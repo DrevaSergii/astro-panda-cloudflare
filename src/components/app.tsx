@@ -1,50 +1,58 @@
-import { Container } from 'styled-system/jsx'
-import { Button } from '~/components/ui/button'
-import * as RadioButtonGroup from '~/components/ui/radio-button-group'
-import * as Slider from '~/components/ui/slider'
-import * as Tabs from '~/components/ui/tabs'
+import { Accordion, AccordionItem, AccordionItemContent, AccordionItemTrigger } from '../components/ui/accordion';
+import { Button } from '~/components/ui/button';
+import { Slider, SliderControl, SliderRange, SliderThumb, SliderTrack } from '~/components/ui/slider';
 
 export const App = () => {
   return (
-    <Container py={{ base: '12', md: '16' }} maxW="7xl">
-      <Tabs.Root defaultValue="button">
-        <Tabs.List>
-          <Tabs.Trigger value="button">Button</Tabs.Trigger>
-          <Tabs.Trigger value="radio">Radio Group</Tabs.Trigger>
-          <Tabs.Trigger value="slider">Slider</Tabs.Trigger>
-          <Tabs.Indicator />
-        </Tabs.List>
-        <Tabs.Content value="button">
-          <Button size="md">Hello Park UI</Button>
-        </Tabs.Content>
-        <Tabs.Content value="radio">
-          <RadioButtonGroup.Root defaultValue="react">
-            {[{ value: 'S' }, { value: 'M' }, { value: 'L', disabled: true }, { value: 'XL' }].map(
-              (option, id) => (
-                <RadioButtonGroup.Item key={id} value={option.value} disabled={option.disabled}>
-                  <RadioButtonGroup.ItemControl />
-                  <RadioButtonGroup.Label>{option.value}</RadioButtonGroup.Label>
-                </RadioButtonGroup.Item>
-              ),
-            )}
-          </RadioButtonGroup.Root>
-        </Tabs.Content>
-        <Tabs.Content value="slider">
-          <Slider.Root min={0} max={100} defaultValue={[33]}>
-            <Slider.Control>
-              <Slider.Track>
-                <Slider.Range />
-              </Slider.Track>
-              <Slider.Thumb index={0} />
-            </Slider.Control>
-            <Slider.MarkerGroup>
-              <Slider.Marker value={25}>25</Slider.Marker>
-              <Slider.Marker value={50}>50</Slider.Marker>
-              <Slider.Marker value={75}>75</Slider.Marker>
-            </Slider.MarkerGroup>
-          </Slider.Root>
-        </Tabs.Content>
-      </Tabs.Root>
-    </Container>
+    <div style={{padding: '4px'}}>
+      <Accordion defaultValue={['button', 'slider', 'button2']} multiple>
+        <AccordionItem value="button">
+          <AccordionItemTrigger>
+            Item with button
+          </AccordionItemTrigger>
+          <AccordionItemContent>
+            <div>
+              <div style={{padding: '4px'}}>
+                <Button>
+                  Button
+                </Button>
+              </div>
+            </div>
+          </AccordionItemContent>
+        </AccordionItem>
+        <AccordionItem value="slider">
+          <AccordionItemTrigger>
+            Item with slider
+          </AccordionItemTrigger>
+          <AccordionItemContent>
+            <div>
+              <Slider max={100} min={0} value={[33, 66]}>
+                <SliderControl>
+                  <SliderTrack>
+                    <SliderRange/>
+                  </SliderTrack>
+                  <SliderThumb index={0}/>
+                  <SliderThumb index={1}/>
+                </SliderControl>
+              </Slider>
+            </div>
+          </AccordionItemContent>
+        </AccordionItem>
+        <AccordionItem value="button2">
+          <AccordionItemTrigger>
+            Item with button 2
+          </AccordionItemTrigger>
+          <AccordionItemContent>
+            <div>
+              <div style={{padding: '4px'}}>
+                <Button>
+                  Button 2
+                </Button>
+              </div>
+            </div>
+          </AccordionItemContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
   )
 }

@@ -3,8 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "panda": "panda codegen",
     "build": "astro build",
-    "dev": "wrangler pages dev ./dist"
+    "dev": "astro dev"
   },
   "dependencies": {
     "@ark-ui/react": "1.2.1",
